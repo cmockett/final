@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="earTrainingApp">
 <head>
 	<title></title>
-</head>
-<body>
 
-<script src = "app.js"></script>
-<script src = "wad.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="final.css">
+</head>
+<body class="body-class" ng-controller="earTrainingController">
+	<div class="container-fluid">
+		<div class="jumbotron container-fluid">
+			<div class="row">
+				<h1>Ear Training</h1>
+				<h4>Select a Key and a Scale, and select or play the correct notes to win!</h4>
+			</div>
+		</div>
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<p class="navbar-text">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
+				<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.key}}</option>
+			</select></p>
+			<p class="navbar-text">Scale:<select ng-model="selectScale" name="Scale" class="navbar-btn">
+				<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
+			</select></p>
+			<button class="btn-lg btn-danger navbar-btn pull-right" type="button" ng-click="setKeyScale()">Set Key/Scale</button>
+		</div>
+		</nav>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 col-sm-2">
+			<button ng-repeat="scaleDegrees in intervalArray" class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false">{{scaleDegrees}}</button>
+		</div>
+	</div>
+
+
+
+
+
+
+	<script src = "app.js"></script>
+	<script src = "wad.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
