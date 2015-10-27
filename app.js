@@ -1,6 +1,6 @@
 angular.module("earTrainingApp", [])
 
-var earTrainingFunction = function($scope){
+var earTrainingFunction = function($scope, $index){
 	$scope.notesArray = []
 	$scope.compareArray = []
 
@@ -9,76 +9,76 @@ var earTrainingFunction = function($scope){
 
 	$scope.keysArray = [
 		{
-			key: "A",
+			key: "A3",
 		},
 		{
-			key: "A#/Bb",
+			key: "A#3",
 		},
 		{
-			key: "B",
+			key: "B3",
 		},
 		{
-			key: "C",
+			key: "C4",
 		},
 		{
-			key: "C#/Db",
+			key: "C#4",
 		},
 		{
-			key: "D",
+			key: "D4",
 		},
 		{
-			key: "D#/Eb",
+			key: "D#4",
 		},
 		{
-			key: "E",
+			key: "E4",
 		},
 		{
-			key: "F",
+			key: "F4",
 		},
 		{
-			key: "F#/Gb",
+			key: "F#4",
 		},
 		{
-			key: "G",
+			key: "G4",
 		},
 		{
-			key: "G#/Ab",
+			key: "G#4",
 		},
 		{
-			key: "A",
+			key: "A4",
 		},
 		{
-			key: "A#/Bb",
+			key: "A#4",
 		},
 		{
-			key: "B",
+			key: "B4",
 		},
 		{
-			key: "C",
+			key: "C5",
 		},
 		{
-			key: "C#/Db",
+			key: "C#5",
 		},
 		{
-			key: "D",
+			key: "D5",
 		},
 		{
-			key: "D#/Eb",
+			key: "D#5",
 		},
 		{
-			key: "E",
+			key: "E5",
 		},
 		{
-			key: "F",
+			key: "F5",
 		},
 		{
-			key: "F#/Gb",
+			key: "F#5",
 		},
 		{
-			key: "G",
+			key: "G5",
 		},
 		{
-			key: "G#/Ab",
+			key: "G#5",
 		},
 	]
 
@@ -86,71 +86,83 @@ var earTrainingFunction = function($scope){
 		{
 			scaleName: "Chromatic",
 			scalePattern: [1,1,1,1,1,1,1,1,1,1,1,1],
-			intervalPattern: ["1","b2","2","b3","3","4","b5","5","b6","6","b7","7"]
+			intervalPattern: ["1","b2","2","b3","3","4","b5","5","b6","6","b7","7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Ionian (Major)",
 			scalePattern: [2,2,1,2,2,2,1],
-			intervalPattern: ["1","2","3","4","5","6","7"]
+			intervalPattern: ["1","2","3","4","5","6","7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Dorian",
 			scalePattern: [2,1,2,2,2,1,2],
-			intervalPattern: ["1","2","b3","4","5","6","b7"]
+			intervalPattern: ["1","2","b3","4","5","6","b7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Phrygian",
 			scalePattern: [1,2,2,2,1,2,2],
-			intervalPattern: ["1","b2","b3","4","5","b6","b7"]
+			intervalPattern: ["1","b2","b3","4","5","b6","b7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Lydian",
 			scalePattern: [2,2,2,1,2,2,1],
-			intervalPattern: ["1","2","3","#4","5","6","7"]
+			intervalPattern: ["1","2","3","#4","5","6","7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Mixolydian",
 			scalePattern: [2,2,1,2,2,1,2],
-			intervalPattern: ["1","2","3","4","5","6","b7"]
+			intervalPattern: ["1","2","3","4","5","6","b7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Aeolian (Minor)",
 			scalePattern: [2,1,2,2,1,2,2],
-			intervalPattern: ["1","2","b3","4","5","b6","b7"]
+			intervalPattern: ["1","2","b3","4","5","b6","b7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Locrian",
 			scalePattern: [1,2,2,1,2,2,2],
-			intervalPattern: ["1","b2","b3","4","b5","b6","b7"]
+			intervalPattern: ["1","b2","b3","4","b5","b6","b7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Half-Whole Diminished",
 			scalePattern: [1,2,1,2,1,2,1,2],
-			intervalPattern: ["1","b2","b3","3","#4","5","6","b7"]
+			intervalPattern: ["1","b2","b3","3","#4","5","6","b7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Whole-Half Diminished",
 			scalePattern: [2,1,2,1,2,1,2,1],
-			intervalPattern: ["1","2","b3","4","b5","#5","6","7"]
+			intervalPattern: ["1","2","b3","4","b5","#5","6","7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Harmonic Minor",
 			scalePattern: [2,1,2,2,1,3,1],
-			intervalPattern: ["1","2","b3","4","5","b6","7"]
+			intervalPattern: ["1","2","b3","4","5","b6","7"],
+			scaleNotes : []
 		},
 		{
 			scaleName: "Melodic Minor",
 			scalePattern: [2,1,2,2,2,2,1],
-			intervalPattern: ["1","2","b3","4","5","6","7"]
+			intervalPattern: ["1","2","b3","4","5","6","7"],
+			scaleNotes : []
 		}
 		]
-		// $scope.intervalArray = $scope.scalesArray.intervalPattern
-		// intervalArray1 = ["1","b2","2","b3","3","4","b5","5","b6","6","b7","7"]
-		// intervalArray2 = []
+
+		$scope.notes = []
 		$scope.setKeyScale = function(){
+			$scope.buttonsDivHide = true
 			$scope.keyIndex
 			$scope.compareArray.length = 0
-			notes.length = 0
+			$scope.notes.length = 0
 
 			for(var i=0; i<($scope.keysArray.length/2); i++){
 				if($scope.keysArray[i].key === $scope.selectKeys){
@@ -163,14 +175,33 @@ var earTrainingFunction = function($scope){
 				position += $scope.scalesArray[$scope.selectScale].scalePattern[i]
 			}
 			$scope.compareArray.filter(function(el){
-				notes.push(el.key);
+				$scope.notes.push(el.key);
 			})
-			console.log(notes)
+			$scope.scalesArray[$scope.selectScale].scaleNotes.push($scope.notes)
+
+			console.log($scope.scalesArray[$scope.selectScale].scaleNotes)
 			console.log($scope.scalesArray[$scope.selectScale].intervalPattern)
 		}
-		var notes = []
+		console.log('test', $scope.notes)
+		$scope.timbreArray = ['Sine', 'Square', 'Sawtooth', 'Triangle']
 
 
+
+		$scope.playNote = function($index){
+			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+			
+			var timbre = new Wad({
+				source  : $scope.selectTimbreLC,
+			})
+		
+			timbre.play({
+				volume  : 0.5, 
+				loop    : false, 
+				pitch   : $scope.notes[$index],
+				detune  : 0,
+				panning : 0
+				});
+		}
 
 
 
@@ -179,4 +210,4 @@ var earTrainingFunction = function($scope){
 
 }
 
-angular.module("earTrainingApp").controller("earTrainingController", ["$scope", earTrainingFunction])
+angular.module("earTrainingApp").controller("earTrainingController", ['$scope', earTrainingFunction])
