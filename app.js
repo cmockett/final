@@ -166,7 +166,7 @@ var earTrainingFunction = function($scope){
 				notes.push(el.key);
 			})
 			console.log(notes)
-			console.log($scope.scalesArray.intervalPattern)
+			console.log($scope.scalesArray[$scope.selectScale].intervalPattern)
 		}
 		var notes = []
 

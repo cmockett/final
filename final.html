@@ -15,7 +15,7 @@
 				<h4>Select a Key and a Scale, and select or play the correct notes to win!</h4>
 			</div>
 		</div>
-		<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<p class="navbar-text">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
 				<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.key}}</option>
@@ -25,14 +25,14 @@
 			</select></p>
 			<button class="btn-lg btn-danger navbar-btn pull-right" type="button" ng-click="setKeyScale()">Set Key/Scale</button>
 		</div>
-		</nav>
-	</div>
-	<div class="row">
-		<div class="col-xs-4 col-sm-2">
-			<button ng-repeat="scaleDegrees in intervalArray" class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false">{{scaleDegrees}}</button>
+	</nav>
+		<div class="row">
+			<div class="col-xs-4 col-sm-2" ng-repeat="scaleDegrees in scalesArray[selectScale].intervalPattern">
+				<button class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false">{{scaleDegrees}}</button>
+			</div>
 		</div>
-	</div>
 
+	</div>
 
 
 
