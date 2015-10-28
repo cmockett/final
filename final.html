@@ -19,7 +19,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<p class="navbar-text">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
-					<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.key}}</option>
+					<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.label}}</option>
 				</select></p>
 				<p class="navbar-text">Scale:<select ng-model="selectScale" name="Scale" class="navbar-btn">
 					<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
@@ -41,7 +41,7 @@
 			</div>
 		</nav>
 		<div class="row">
-			<div class="col-xs-4 col-sm-2"  ng-repeat="note in notes track by $index">
+			<div class="col-xs-4 col-sm-2"  ng-repeat="note in notesNoNumber track by $index">
 				<button class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false" ng-click="playNote($index, scaleDegrees.id)">{{note}}
 				<!-- <span ng-repeat="note in notes"> ({{note}} )</span> -->
 				</button>
@@ -50,9 +50,14 @@
 		<h3 style="color: white">Scale Quiz</h3>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
-	    		
-	    		<button class="btn-lg btn-danger navbar-btn pull-left" type="button" >Play Scale</button>
-	    		<p class="navbar-text">Scale:<select name="Scale" class="navbar-btn">
+				<p class="navbar-text">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
+					<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.label}}</option>
+				</select></p>
+				<p class="navbar-text">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn">
+					<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
+				</select></p>		
+	    		<button class="btn-lg btn-danger navbar-btn pull-left" type="button" ng-click="playScale()">Play Scale</button>
+	    		<p class="navbar-text">Scale:<select name="Scale" class="navbar-btn" ng-model="answerScaleQuiz" ng-change="changeScaleDropdown()">
 	    			<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
 	    		</select></p>
 			</div>
