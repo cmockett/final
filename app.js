@@ -179,13 +179,278 @@ var earTrainingFunction = function($scope, $index){
 			})
 			$scope.scalesArray[$scope.selectScale].scaleNotes.push($scope.notes)
 
-			console.log($scope.scalesArray[$scope.selectScale].scaleNotes)
-			console.log($scope.scalesArray[$scope.selectScale].intervalPattern)
+			// console.log($scope.scalesArray[$scope.selectScale].scaleNotes)
+			// console.log($scope.scalesArray[$scope.selectScale].intervalPattern)
+			// console.log($scope.notes)
+			// console.log($scope.notesArray)
 		}
-		console.log('test', $scope.notes)
+		// $scope.numNotes
+
 		$scope.timbreArray = ['Sine', 'Square', 'Sawtooth', 'Triangle']
 
+		$scope.startNotesTest = function(){
+			$scope.notesArray.length = 0
+			$scope.numNotes
+			console.log($scope.numNotes)
+			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+			var timbre = new Wad({
+				source : $scope.selectTimbreLC
+			})
+			if($scope.numNotes == 2){
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					env     : {hold : 0.5},
+				})
 
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 0.6,
+					env     : {hold : 0.5},
+				})
+			}
+			else if($scope.numNotes == 3){
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					env     : {hold : 0.5},
+				})
+
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 0.6,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.2,
+					env     : {hold : 0.5},
+				})
+			}
+			else if($scope.numNotes == 4){
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 0.6,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.2,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[3] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.8,
+					env     : {hold : 0.5},
+				})
+			}
+			else if($scope.numNotes == 5){
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 0.6,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.2,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[3] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.8,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[4] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 2.4,
+					env     : {hold : 0.5},
+				})
+			}
+			else if($scope.numNotes == 6){
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 0.6,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.2,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[3] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.8,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[4] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 2.4,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[5] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 3.0,
+					env     : {hold : 0.5},
+				})
+			}
+			else if($scope.numNotes == 7){
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 0.6,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.2,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[3] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 1.8,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[4] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 2.4,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[5] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 3.0,
+					env     : {hold : 0.5},
+				})
+				timbre.play({
+					volume  : 0.5,
+					loop    : false, 
+					pitch   : $scope.notesArray[6] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+					detune  : 0,
+					panning : 0,
+					wait    : 3.6,
+					env     : {hold : 0.5},
+				})
+			}
+
+			
+			console.log($scope.notesArray)
+		}
 
 		$scope.playNote = function($index){
 			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
@@ -199,7 +464,8 @@ var earTrainingFunction = function($scope, $index){
 				loop    : false, 
 				pitch   : $scope.notes[$index],
 				detune  : 0,
-				panning : 0
+				panning : 0,
+				env     : {hold : 1},
 				});
 		}
 

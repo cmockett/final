@@ -27,13 +27,24 @@
 				<p class="navbar-text">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn">
 					<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
 				</select></p>
-				<button class="btn-lg btn-danger navbar-btn pull-right" type="button" ng-click="setKeyScale()">Set Key/Scale</button>
+				<p class="navbar-text"># of Notes<select ng-model="numNotes" name="numNotes" class="navbar-btn">
+					<option value="2" label="2"></option>
+					<option value="3" label="3"></option>
+					<option value="4" label="4"></option>
+					<option value="5" label="5"></option>
+					<option value="6" label="6"></option>
+					<option value="7" label="7"></option>
+				</select></p>
+
+				<button class="btn-lg btn-danger navbar-btn" type="button" ng-click="setKeyScale()">Set Key/Scale</button>
+				<button class="btn-lg btn-danger navbar-btn pull-right" type="button" ng-click="startNotesTest()">Start Quiz</button>
 			</div>
 		</nav>
 		<div class="row">
-			<div class="col-xs-4 col-sm-2"  ng-repeat="scaleDegrees in scalesArray[selectScale].intervalPattern track by $index" ng-show="buttonsDivHide">
-				<button class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false" ng-click="playNote($index, scaleDegrees.id)">{{scaleDegrees}}<span ng-repeat="note in notes"> ({{note}} )</span></button>
-				<!-- ng-repeat="scaleDegrees in scalesArray[selectScale].intervalPattern track by $index" -->
+			<div class="col-xs-4 col-sm-2"  ng-repeat="note in notes track by $index">
+				<button class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false" ng-click="playNote($index, scaleDegrees.id)">{{note}}
+				<!-- <span ng-repeat="note in notes"> ({{note}} )</span> -->
+				</button>
 			</div>
 		</div>
 		<h3 style="color: white">Scale Quiz</h3>
