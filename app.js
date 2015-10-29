@@ -320,13 +320,17 @@ var earTrainingFunction = function($scope, $index){
 				source : 'sine',
 				volume : 0.5,
 			})
-					Wad.midiInstrument.play()
 		setTimeout(function(){
 
 			Wad.midiInputs[0].onmidimessage= function(event){
 				if(event.data[0] === 144){
+					console.log(Wad.pitchesArray[event.data[1]])
+					Wad.midiInstrument.play({pitch:Wad.pitchesArray[event.data[1]]})
 					$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 					console.log($scope.playedNotesArray)
+
+					//Win or Lose if correct notes played
+
 					if($scope.notesArray.length>0){
 						if($scope.numNotes == $scope.playedNotesArray.length){
 							if($scope.notesArray.join() === $scope.playedNotesArray.join()){
@@ -342,7 +346,7 @@ var earTrainingFunction = function($scope, $index){
 					Wad.midiInstrument.stop()
 				}
 			}
-		},1000)
+		}, 1000)
 
 
 		$scope.playNote = function($index){
