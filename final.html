@@ -25,7 +25,7 @@
 					<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
 				</select></p>
 				<p class="navbar-text">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn">
-					<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
+					<option value="{{wave}}" ng-repeat="wave in timbreArray" ng-selected="sine">{{wave}}</option>
 				</select></p>
 				<p class="navbar-text"># of Notes<select ng-model="numNotes" name="numNotes" class="navbar-btn">
 					<option value="2" label="2"></option>
