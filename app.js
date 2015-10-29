@@ -310,22 +310,25 @@ var earTrainingFunction = function($scope, $index){
 			console.log($scope.notesArray)
 		}
 
-	////////Setting up MIDI input and pushing into $scope.playedNotesArray or $scope.playedMidiNotes
+	////////Setting up MIDI input and pushing into $scope.playedNotesArray
 		$scope.playedNotesArray = []
 
-		// $scope.selectTimbre = ''
-		// $scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+		// $scope.selectTimbre = 
 
-		Wad.midiInstrument = new Wad({
-				source : 'sine',
+		$scope.changeTimbre = function(){
+			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+			Wad.midiInstrument = new Wad({
+				source : $scope.selectTimbreLC,
 				volume : 0.5,
 			})
+		}
+
 		setTimeout(function(){
 
 			Wad.midiInputs[0].onmidimessage= function(event){
 				if(event.data[0] === 144){
-					console.log(Wad.pitchesArray[event.data[1]])
-					Wad.midiInstrument.play({pitch:Wad.pitchesArray[event.data[1]]})
+					Wad.midiInstrument.play(
+						{pitch : Wad.pitchesArray[event.data[1]]})
 					$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 					console.log($scope.playedNotesArray)
 
