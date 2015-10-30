@@ -1,3 +1,22 @@
 .body-class{
 	background-color: #ff4040;
 }
+
+.scootDown{
+	margin-top: 21px;
+}
+
+.putBelow{
+	float: bottom;
+}
+
+@media (max-width : 768px){
+.lowerMarginTopBottom{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.scootDown{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+}

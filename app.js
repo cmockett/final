@@ -331,12 +331,10 @@ var earTrainingFunction = function($scope, $index){
 		}			
 		console.log($scope.notesArray)
 	}
-
 	
-////////Setting up MIDI input and pushing into $scope.playedNotesArray
 	$scope.playedNotesArray = []
 
-	// $scope.selectTimbre = 
+////////Setting up MIDI input and pushing into $scope.playedNotesArray
 
 	$scope.changeTimbre = function(){
 		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
@@ -354,28 +352,28 @@ var earTrainingFunction = function($scope, $index){
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
 						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
-							$scope.winOrLose = "Correct!"
+							var message = "Correct!"
+							$('#modalMessage').html(message)
 							$('#myModal').modal('show')
 						}
 						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
 							$('#myModal').modal('show')
 							$scope.playedNotesArray.length = 0
-							$scope.winOrLose = "Try Again"
 						}
 					}
 				}
-
-
 			}
 			else if(event.data[0] === 128){
 				Wad.midiInstrument.stop()
 			}
 		}
 	}, 1000)
-		//Win or Lose if correct notes played
 
 
 	$scope.playNote = function($index){
@@ -391,7 +389,7 @@ var earTrainingFunction = function($scope, $index){
 			pitch   : $scope.notes[$index],
 			detune  : 0,
 			panning : 0,
-			env     : {hold : 1},
+			env     : {hold : 0.5},
 			});
 
 		$scope.playedNotesArray.push($scope.notes[$index])
@@ -400,18 +398,21 @@ var earTrainingFunction = function($scope, $index){
 		if($scope.notesArray.length>0){
 			if($scope.numNotes == $scope.playedNotesArray.length){
 				if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+					var message = "Correct!"
+					$('#modalMessage').html(message)
 					$('#myModal').modal('show')
-					$scope.winOrLose = "Correct!"
 				}
 				else{
+					var message = "Try Again"
+					$('#modalMessage').html(message)
 					$('#myModal').modal('show')
 					$scope.playedNotesArray.length = 0
-					$scope.winOrLose = "Try Again"
 				}
 			}
 		}
 	}
 	$scope.randomIndex
+
 	$scope.playScale = function(){
 		$scope.randomIndex = Math.floor($scope.scalesArray.length * Math.random())
 		$scope.keyIndex
@@ -594,15 +595,16 @@ var earTrainingFunction = function($scope, $index){
 	}
 	$scope.changeScaleDropdown = function(){
 		if($scope.answerScaleQuiz == $scope.randomIndex){
-			alert("Correct!")
+			var message = "Correct!"
+			$('#modalMessage').html(message)
+			$('#myModal').modal('show')
 		}
 		else{
-			alert("you suck!")
+			var message = "Try Again"
+			$('#modalMessage').html(message)
+			$('#myModal').modal('show')
 		}
 	}
-
-
-
 }
 
 angular.module("earTrainingApp").controller("earTrainingController", ['$scope', earTrainingFunction])

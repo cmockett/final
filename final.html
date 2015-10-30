@@ -18,16 +18,16 @@
 		<h3 style="color: white">Notes Quiz</h3>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
-				<p class="navbar-text">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
 					<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.label}}</option>
 				</select></p>
-				<p class="navbar-text">Scale:<select ng-model="selectScale" name="Scale" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Scale:<select ng-model="selectScale" name="Scale" class="navbar-btn">
 					<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
 				</select></p>
-				<p class="navbar-text">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn" ng-change="changeTimbre()">
+				<p class="navbar-text lowerMarginTopBottom">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn" ng-change="changeTimbre()">
 					<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
 				</select></p>
-				<p class="navbar-text"># of Notes<select ng-model="numNotes" name="numNotes" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom"># of Notes<select ng-model="numNotes" name="numNotes" class="navbar-btn">
 					<option value="2" label="2"></option>
 					<option value="3" label="3"></option>
 					<option value="4" label="4"></option>
@@ -35,15 +35,17 @@
 					<option value="6" label="6"></option>
 					<option value="7" label="7"></option>
 				</select></p>
-				<p class="navbar-text">Quiz Note Speed<select ng-model="noteSpeed" name="noteSpeed" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Quiz Note Speed<select ng-model="noteSpeed" name="noteSpeed" class="navbar-btn">
 					<option value=0.25 label=".25s"></option>
 					<option value=0.5 label=".5s"></option>
 					<option value=0.75 label=".75s"></option>
 					<option value=1.0 label="1s"></option>
 				</select></p>
-				<p class="navbar-text">Start on Key<input type="checkbox" ng-model="startOn1" ng-true-value="true" ng-false-value="false"></p>
-				<button class="btn-lg btn-danger navbar-btn" type="button" ng-click="setKeyScale()">Set Key/Scale</button>
-				<button class="btn-lg btn-danger navbar-btn pull-right" type="button" ng-click="startNotesTest()">Start Quiz</button>
+				<p class="navbar-text scootDown lowerMarginTopBottom">Start on Key<input type="checkbox" ng-model="startOn1"></p>
+				<!-- <div class="btn-group-vertical" role="group"> -->
+					<button class="btn-lg btn-danger navbar-btn" type="button" ng-click="setKeyScale()">Set Key/Scale</button>
+					<button class="btn-lg btn-danger navbar-btn pull-right" type="button" ng-click="startNotesTest()">Start Quiz</button>
+				<!-- </div> -->
 			</div>
 		</nav>
 		<div class="row">
@@ -55,20 +57,20 @@
 		<h3 style="color: white">Scale Quiz</h3>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
-				<p class="navbar-text">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
 					<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.label}}</option>
 				</select></p>
-				<p class="navbar-text">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn">
 					<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
 				</select></p>	
-				<p class="navbar-text">Quiz Note Speed<select ng-model="noteSpeed" name="noteSpeed" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Quiz Note Speed<select ng-model="noteSpeed" name="noteSpeed" class="navbar-btn">
 					<option value=0.25 label=".25s"></option>
 					<option value=0.5 label=".5s"></option>
 					<option value=0.75 label=".75s"></option>
 					<option value=1.0 label="1s"></option>
 				</select></p>	
 	    		<button class="btn-lg btn-danger navbar-btn pull-left" type="button" ng-click="playScale()">Play Scale</button>
-	    		<p class="navbar-text">Scale:<select name="Scale" class="navbar-btn" ng-model="answerScaleQuiz" ng-change="changeScaleDropdown()">
+	    		<p class="navbar-text lowerMarginTopBottom">Scale:<select name="Scale" class="navbar-btn" ng-model="answerScaleQuiz" ng-change="changeScaleDropdown()">
 	    			<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
 	    		</select></p>
 			</div>
@@ -76,7 +78,7 @@
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" ng-hide="false">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
-					<h4 class="text-center"><br>{{winOrLose}}<br><br></h4>
+					<h4 id="modalMessage" class="text-center"></h4>
 				</div>
 			</div>
 		</div>
