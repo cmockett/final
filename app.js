@@ -153,423 +153,455 @@ var earTrainingFunction = function($scope, $index){
 		}
 	]
 
-		$scope.notes = []
-		$scope.notesNoNumber = []
+	$scope.notes = []
+	$scope.notesNoNumber = []
 
-		$scope.setKeyScale = function(){
-			$scope.notesNoNumber.length =0
-			$scope.buttonsDivHide = true
-			$scope.keyIndex
-			$scope.compareArray.length = 0
-			$scope.notes.length = 0
+	$scope.setKeyScale = function(){
+		$scope.notesNoNumber.length =0
+		$scope.buttonsDivHide = true
+		$scope.keyIndex
+		$scope.compareArray.length = 0
+		$scope.notes.length = 0
 
-			for(var i=0; i<($scope.keysArray.length/2); i++){
-				if($scope.keysArray[i].key === $scope.selectKeys){
-					$scope.keyIndex = i
-				}
-			}
-			var position = $scope.keyIndex
-			for ( var i = 0; i < $scope.scalesArray[$scope.selectScale].scalePattern.length; i++ ) {
-				$scope.compareArray.push($scope.keysArray[position])
-				position += $scope.scalesArray[$scope.selectScale].scalePattern[i]
-			}
-			$scope.compareArray.filter(function(el){
-				$scope.notes.push(el.key);
-			})
-
-			//Removing # from each Note Value, just for display on the ng-repeated buttons
-			for(var i = 0; i<$scope.notes.length; i++){
-				var tempArray=[]
-				var tempVar = ''
-				tempArray = $scope.notes[i].split("")
-				tempArray.splice(-1, 1)
-				tempVar = tempArray.join('')
-				$scope.notesNoNumber.push(tempVar)
+		for(var i=0; i<($scope.keysArray.length/2); i++){
+			if($scope.keysArray[i].key === $scope.selectKeys){
+				$scope.keyIndex = i
 			}
 		}
+		var position = $scope.keyIndex
+		for ( var i = 0; i < $scope.scalesArray[$scope.selectScale].scalePattern.length; i++ ) {
+			$scope.compareArray.push($scope.keysArray[position])
+			position += $scope.scalesArray[$scope.selectScale].scalePattern[i]
+		}
+		$scope.compareArray.filter(function(el){
+			$scope.notes.push(el.key);
+		})
 
-		$scope.timbreArray = ['Sine', 'Square', 'Sawtooth', 'Triangle']
+		//Removing # from each Note Value, just for display on the ng-repeated buttons
+		for(var i = 0; i<$scope.notes.length; i++){
+			var tempArray=[]
+			var tempVar = ''
+			tempArray = $scope.notes[i].split("")
+			tempArray.splice(-1, 1)
+			tempVar = tempArray.join('')
+			$scope.notesNoNumber.push(tempVar)
+		}
+	}
 
-		$scope.numNotes
+	$scope.timbreArray = ['Sine', 'Square', 'Sawtooth', 'Triangle']
 
-		$scope.startNotesTest = function(){
-			$scope.notesArray.length = 0
-			$scope.playedNotesArray.length = 0
-			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
-			var timbre = new Wad({
-				source : $scope.selectTimbreLC
-			})
-			var play1stNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[0] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play2ndNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					wait    : 0.6,
-					env     : {hold : 0.5},
-				})}
-			var play3rdNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					wait    : 1.2,
-					env     : {hold : 0.5},
-				})}
-			var play4thNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[3] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					wait    : 1.8,
-					env     : {hold : 0.5},
-				})}
-			var play5thNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[4] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					wait    : 2.4,
-					env     : {hold : 0.5},
-				})}
-			var play6thNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[5] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					wait    : 3.0,
-					env     : {hold : 0.5},
-				})}
-			var play7thNoteQuizNote = function(){
-				timbre.play({
-					volume  : 0.5,
-					loop    : false, 
-					pitch   : $scope.notesArray[6] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
-					detune  : 0,
-					panning : 0,
-					wait    : 3.6,
-					env     : {hold : 0.5},
-				})}
-			if($scope.numNotes == 2){
-				play1stNoteQuizNote()
-				play2ndNoteQuizNote()
-			}
-			else if($scope.numNotes == 3){
-				play1stNoteQuizNote()
-				play2ndNoteQuizNote()
-				play3rdNoteQuizNote()
-			}
-			else if($scope.numNotes == 4){
-				play1stNoteQuizNote()
-				play2ndNoteQuizNote()
-				play3rdNoteQuizNote()
-				play4thNoteQuizNote()
-			}
-			else if($scope.numNotes == 5){
-				play1stNoteQuizNote()
-				play2ndNoteQuizNote()
-				play3rdNoteQuizNote()
-				play4thNoteQuizNote()
-				play5thNoteQuizNote()
-			}
-			else if($scope.numNotes == 6){
-				play1stNoteQuizNote()
-				play2ndNoteQuizNote()
-				play3rdNoteQuizNote()
-				play4thNoteQuizNote()
-				play5thNoteQuizNote()
-				play6thNoteQuizNote()
-			}
-			else if($scope.numNotes == 7){
-				play1stNoteQuizNote()
-				play2ndNoteQuizNote()
-				play3rdNoteQuizNote()
-				play4thNoteQuizNote()
-				play5thNoteQuizNote()
-				play6thNoteQuizNote()
-				play7thNoteQuizNote()
-			}			
-			console.log($scope.notesArray)
+	$scope.numNotes
+
+	var compressor = new Wad.Poly({
+		compressor : {
+			attack    : 0.5,
+			knee      : 0,
+			ratio     : 15,
+			release   : 0.5,
+			threshold : -50
+		}
+	})
+
+	$scope.startOn1 = false
+	$scope.startNotesTest = function(){
+		$scope.notesArray.length = 0
+		$scope.playedNotesArray.length = 0
+		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+		$scope.noteSpeedNum = Number($scope.noteSpeed)
+
+		var timbre = new Wad({
+			source : $scope.selectTimbreLC
+		})
+
+		var startOnTheOneOrNot
+		if($scope.startOn1 == true){
+			startOnTheOneOrNot = $scope.selectKeys
+		}
+		else if($scope.startOn1 == false){
+			startOnTheOneOrNot = $scope.notes[Math.floor($scope.notes.length * Math.random())]
 		}
 
-	////////Setting up MIDI input and pushing into $scope.playedNotesArray
-		$scope.playedNotesArray = []
-
-		// $scope.selectTimbre = 
-
-		$scope.changeTimbre = function(){
-			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
-			Wad.midiInstrument = new Wad({
-				source : $scope.selectTimbreLC,
-				volume : 0.5,
-			})
+		var play1stNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[0] = startOnTheOneOrNot,
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play2ndNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[1] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+				detune  : 0,
+				panning : 0,
+				wait    : ($scope.noteSpeedNum),
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play3rdNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[2] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+				detune  : 0,
+				panning : 0,
+				wait    : ($scope.noteSpeedNum*2),
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play4thNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[3] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+				detune  : 0,
+				panning : 0,
+				wait    : ($scope.noteSpeedNum*3),
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play5thNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[4] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+				detune  : 0,
+				panning : 0,
+				wait    : ($scope.noteSpeedNum*4),
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play6thNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[5] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+				detune  : 0,
+				panning : 0,
+				wait    : ($scope.noteSpeedNum*5),
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play7thNoteQuizNote = function(){
+			timbre.play({
+				volume  : 0.4,
+				loop    : false, 
+				pitch   : $scope.notesArray[6] = $scope.notes[Math.floor($scope.notes.length * Math.random())],
+				detune  : 0,
+				panning : 0,
+				wait    : ($scope.noteSpeedNum*6),
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		if($scope.numNotes == 2){
+			play1stNoteQuizNote()
+			play2ndNoteQuizNote()
 		}
+		else if($scope.numNotes == 3){
+			play1stNoteQuizNote()
+			play2ndNoteQuizNote()
+			play3rdNoteQuizNote()
+		}
+		else if($scope.numNotes == 4){
+			play1stNoteQuizNote()
+			play2ndNoteQuizNote()
+			play3rdNoteQuizNote()
+			play4thNoteQuizNote()
+		}
+		else if($scope.numNotes == 5){
+			play1stNoteQuizNote()
+			play2ndNoteQuizNote()
+			play3rdNoteQuizNote()
+			play4thNoteQuizNote()
+			play5thNoteQuizNote()
+		}
+		else if($scope.numNotes == 6){
+			play1stNoteQuizNote()
+			play2ndNoteQuizNote()
+			play3rdNoteQuizNote()
+			play4thNoteQuizNote()
+			play5thNoteQuizNote()
+			play6thNoteQuizNote()
+		}
+		else if($scope.numNotes == 7){
+			play1stNoteQuizNote()
+			play2ndNoteQuizNote()
+			play3rdNoteQuizNote()
+			play4thNoteQuizNote()
+			play5thNoteQuizNote()
+			play6thNoteQuizNote()
+			play7thNoteQuizNote()
+		}			
+		console.log($scope.notesArray)
+	}
 
-		setTimeout(function(){
+	
+////////Setting up MIDI input and pushing into $scope.playedNotesArray
+	$scope.playedNotesArray = []
 
-			Wad.midiInputs[0].onmidimessage= function(event){
-				if(event.data[0] === 144){
-					Wad.midiInstrument.play(
-						{pitch : Wad.pitchesArray[event.data[1]]})
-					$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-					console.log($scope.playedNotesArray)
+	// $scope.selectTimbre = 
 
-					//Win or Lose if correct notes played
+	$scope.changeTimbre = function(){
+		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+		Wad.midiInstrument = new Wad({
+			source : $scope.selectTimbreLC,
+			volume : 0.4,
+		})
+	}
 
-					if($scope.notesArray.length>0){
-						if($scope.numNotes == $scope.playedNotesArray.length){
-							if($scope.notesArray.join() === $scope.playedNotesArray.join()){
-								alert("You win!")
-							}
-							else{
-								alert("You suck!")
-							}
+	setTimeout(function(){
+
+		Wad.midiInputs[0].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							$scope.winOrLose = "Correct!"
+							$('#myModal').modal('show')
+						}
+						else{
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+							$scope.winOrLose = "Try Again"
 						}
 					}
 				}
-				else if(event.data[0] === 128){
-					Wad.midiInstrument.stop()
+
+
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+	}, 1000)
+		//Win or Lose if correct notes played
+
+
+	$scope.playNote = function($index){
+		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+		
+		var timbre = new Wad({
+			source  : $scope.selectTimbreLC,
+		})
+	
+		timbre.play({
+			volume  : 0.4, 
+			loop    : false, 
+			pitch   : $scope.notes[$index],
+			detune  : 0,
+			panning : 0,
+			env     : {hold : 1},
+			});
+
+		$scope.playedNotesArray.push($scope.notes[$index])
+		console.log($scope.playedNotesArray)
+
+		if($scope.notesArray.length>0){
+			if($scope.numNotes == $scope.playedNotesArray.length){
+				if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+					$('#myModal').modal('show')
+					$scope.winOrLose = "Correct!"
+				}
+				else{
+					$('#myModal').modal('show')
+					$scope.playedNotesArray.length = 0
+					$scope.winOrLose = "Try Again"
 				}
 			}
-		}, 1000)
+		}
+	}
+	$scope.randomIndex
+	$scope.playScale = function(){
+		$scope.randomIndex = Math.floor($scope.scalesArray.length * Math.random())
+		$scope.keyIndex
+		$scope.compareArray.length = 0
+		$scope.notes.length = 0
 
+		for(var i=0; i<($scope.keysArray.length/2); i++){
+			if($scope.keysArray[i].key === $scope.selectKeys){
+				$scope.keyIndex = i
+			}
+		}
+		var position = $scope.keyIndex
+		for ( var i = 0; i < $scope.scalesArray[$scope.randomIndex].scalePattern.length; i++ ) {
+			$scope.compareArray.push($scope.keysArray[position])
+			position += $scope.scalesArray[$scope.randomIndex].scalePattern[i]
+		}
+		$scope.compareArray.filter(function(el){
+			$scope.notes.push(el.key);
+		})
+		console.log($scope.notes)
+		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
+		$scope.noteSpeedNum = Number($scope.noteSpeed)
 
-		$scope.playNote = function($index){
-			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
-			
-			var timbre = new Wad({
-				source  : $scope.selectTimbreLC,
-			})
-		
+		var timbre = new Wad({
+			source  : $scope.selectTimbreLC,
+		})
+		var play1stScaleQuizNote = function(){
 			timbre.play({
-				volume  : 0.5, 
+				volume  : 0.4, 
 				loop    : false, 
-				pitch   : $scope.notes[$index],
+				pitch   : $scope.notes[0],
 				detune  : 0,
 				panning : 0,
-				env     : {hold : 1},
-				});
+				env     : {hold : $scope.noteSpeedNum},
+				})}
+		var play2ndScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum),
+				loop    : false, 
+				pitch   : $scope.notes[1],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play3rdScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*2),
+				loop    : false, 
+				pitch   : $scope.notes[2],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play4thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*3),
+				loop    : false, 
+				pitch   : $scope.notes[3],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play5thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*4),
+				loop    : false, 
+				pitch   : $scope.notes[4],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play6thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*5),
+				loop    : false, 
+				pitch   : $scope.notes[5],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play7thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*6),
+				loop    : false, 
+				pitch   : $scope.notes[6],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play8thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*7),
+				loop    : false, 
+				pitch   : $scope.notes[7],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play9thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*8),
+				loop    : false, 
+				pitch   : $scope.notes[8],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play10thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*9),
+				loop    : false, 
+				pitch   : $scope.notes[9],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play11thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*10),
+				loop    : false, 
+				pitch   : $scope.notes[10],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
+		var play12thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*11),
+				loop    : false, 
+				pitch   : $scope.notes[11],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
 
-			$scope.playedNotesArray.push($scope.notes[$index])
-			console.log($scope.playedNotesArray)
-
-			if($scope.notesArray.length>0){
-				if($scope.numNotes == $scope.playedNotesArray.length){
-					if($scope.notesArray.join() === $scope.playedNotesArray.join()){
-						alert("You win!")
-					}
-					else{
-						alert("You suck!")
-					}
-				}
-			}
+		if($scope.notes.length === 7){
+			play1stScaleQuizNote()
+			play2ndScaleQuizNote()
+			play3rdScaleQuizNote()
+			play4thScaleQuizNote()
+			play5thScaleQuizNote()
+			play6thScaleQuizNote()
+			play7thScaleQuizNote()						
 		}
-		$scope.randomIndex
-		$scope.playScale = function(){
-			$scope.randomIndex = Math.floor($scope.scalesArray.length * Math.random())
-			$scope.keyIndex
-			$scope.compareArray.length = 0
-			$scope.notes.length = 0
-
-			for(var i=0; i<($scope.keysArray.length/2); i++){
-				if($scope.keysArray[i].key === $scope.selectKeys){
-					$scope.keyIndex = i
-				}
-			}
-			var position = $scope.keyIndex
-			for ( var i = 0; i < $scope.scalesArray[$scope.randomIndex].scalePattern.length; i++ ) {
-				$scope.compareArray.push($scope.keysArray[position])
-				position += $scope.scalesArray[$scope.randomIndex].scalePattern[i]
-			}
-			$scope.compareArray.filter(function(el){
-				$scope.notes.push(el.key);
-			})
-			console.log($scope.notes)
-			$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
-			
-			var timbre = new Wad({
-				source  : $scope.selectTimbreLC,
-			})
-			var play1stScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					loop    : false, 
-					pitch   : $scope.notes[0],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-					})}
-			var play2ndScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 0.5,
-					loop    : false, 
-					pitch   : $scope.notes[1],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play3rdScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 1,
-					loop    : false, 
-					pitch   : $scope.notes[2],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play4thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 1.5,
-					loop    : false, 
-					pitch   : $scope.notes[3],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play5thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 2,
-					loop    : false, 
-					pitch   : $scope.notes[4],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play6thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 2.5,
-					loop    : false, 
-					pitch   : $scope.notes[5],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play7thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 3,
-					loop    : false, 
-					pitch   : $scope.notes[6],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play8thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 3.5,
-					loop    : false, 
-					pitch   : $scope.notes[7],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play9thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 4,
-					loop    : false, 
-					pitch   : $scope.notes[8],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play10thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 4.5,
-					loop    : false, 
-					pitch   : $scope.notes[9],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play11thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 5,
-					loop    : false, 
-					pitch   : $scope.notes[10],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-			var play12thScaleQuizNote = function(){
-				timbre.play({
-					volume  : 0.5, 
-					wait    : 5.5,
-					loop    : false, 
-					pitch   : $scope.notes[11],
-					detune  : 0,
-					panning : 0,
-					env     : {hold : 0.5},
-				})}
-
-			if($scope.notes.length === 7){
-				play1stScaleQuizNote()
-				play2ndScaleQuizNote()
-				play3rdScaleQuizNote()
-				play4thScaleQuizNote()
-				play5thScaleQuizNote()
-				play6thScaleQuizNote()
-				play7thScaleQuizNote()						
-			}
-			else if($scope.notes.length === 8){
-				play1stScaleQuizNote()
-				play2ndScaleQuizNote()
-				play3rdScaleQuizNote()
-				play4thScaleQuizNote()
-				play5thScaleQuizNote()
-				play6thScaleQuizNote()
-				play7thScaleQuizNote()
-				play8thScaleQuizNote()				
-			}
-			else if($scope.notes.length === 12){
-				play1stScaleQuizNote()
-				play2ndScaleQuizNote()
-				play3rdScaleQuizNote()
-				play4thScaleQuizNote()
-				play5thScaleQuizNote()
-				play6thScaleQuizNote()
-				play7thScaleQuizNote()
-				play8thScaleQuizNote()
-				play9thScaleQuizNote()
-				play10thScaleQuizNote()
-				play11thScaleQuizNote()
-				play12thScaleQuizNote()
-			}
+		else if($scope.notes.length === 8){
+			play1stScaleQuizNote()
+			play2ndScaleQuizNote()
+			play3rdScaleQuizNote()
+			play4thScaleQuizNote()
+			play5thScaleQuizNote()
+			play6thScaleQuizNote()
+			play7thScaleQuizNote()
+			play8thScaleQuizNote()				
 		}
-		$scope.changeScaleDropdown = function(){
-			if($scope.answerScaleQuiz == $scope.randomIndex){
-				alert("Correct!")
-			}
-			else{
-				alert("you suck!")
-			}
+		else if($scope.notes.length === 12){
+			play1stScaleQuizNote()
+			play2ndScaleQuizNote()
+			play3rdScaleQuizNote()
+			play4thScaleQuizNote()
+			play5thScaleQuizNote()
+			play6thScaleQuizNote()
+			play7thScaleQuizNote()
+			play8thScaleQuizNote()
+			play9thScaleQuizNote()
+			play10thScaleQuizNote()
+			play11thScaleQuizNote()
+			play12thScaleQuizNote()
 		}
+	}
+	$scope.changeScaleDropdown = function(){
+		if($scope.answerScaleQuiz == $scope.randomIndex){
+			alert("Correct!")
+		}
+		else{
+			alert("you suck!")
+		}
+	}
+
+
 
 }
 
