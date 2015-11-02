@@ -21,9 +21,20 @@
 				<p class="navbar-text lowerMarginTopBottom">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
 					<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.label}}</option>
 				</select></p>
-				<p class="navbar-text lowerMarginTopBottom">Scale:<select ng-model="selectScale" name="Scale" class="navbar-btn">
+				<p class="navbar-text lowerMarginTopBottom">Scale:<select ng-model="selectScale" name="Scale" class="navbar-btn" ng-change="changeScale()">
 					<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
 				</select></p>
+				<p class="navbar text" ng-hide="hideCustomForm">Input Intervals</p>
+					<form ng-hide="hideCustomForm">
+						<input type="number" name="firstCustomScaleDegree" ng-model="firstCustomScaleDegree">
+						<input type="number" name="secondCustomScaleDegree" ng-model="secondCustomScaleDegree">
+						<input type="number" name="thirdCustomScaleDegree" ng-model="thirdCustomScaleDegree">
+						<input type="number" name="fourthCustomScaleDegree" ng-model="fourthCustomScaleDegree">
+						<input type="number" name="fifthCustomScaleDegree" ng-model="fifthCustomScaleDegree">
+						<input type="number" name="sixthCustomScaleDegree" ng-model="sixthCustomScaleDegree">
+						<input type="number" name="seventhCustomScaleDegree" ng-model="seventhCustomScaleDegree">
+						<input type="submit" value="Submit" ng-click="submitCustomScale()">
+					</form>
 				<p class="navbar-text lowerMarginTopBottom">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn" ng-change="changeTimbre()">
 					<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
 				</select></p>

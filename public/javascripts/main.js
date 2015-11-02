@@ -150,11 +150,38 @@ var earTrainingFunction = function($scope, $index){
 		{
 			scaleName: "Melodic Minor",
 			scalePattern: [2,1,2,2,2,2,1],
+		},
+		{
+			scaleName: "Custom Scale...",
+			scalePattern: [],
 		}
 	]
 
 	$scope.notes = []
 	$scope.notesNoNumber = []
+
+	//Custom Scale...
+	$scope.hideCustomForm = true
+	$scope.changeScale = function(){
+
+		if($scope.selectScale == 12){
+			$scope.hideCustomForm = false
+		}
+	}
+
+	$scope.submitCustomScale = function(){
+		$scope.scalesArray[$scope.selectScale].scalePattern.length =0
+		var customScaleArray = []
+		console.log($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
+		customScaleArray.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
+		for(var i = 0; i<customScaleArray.length; i++){
+			if(typeof customScaleArray[i] === Number ){
+				$scope.scalesArray[$scope.selectScale].scalePattern.push(customScaleArray[i])
+			}
+		}
+		// $scope.scalesArray[$scope.selectScale].scalePattern.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
+		console.log($scope.scalesArray[$scope.selectScale].scalePattern)
+	}
 
 	$scope.setKeyScale = function(){
 		$scope.notesNoNumber.length =0
@@ -192,15 +219,17 @@ var earTrainingFunction = function($scope, $index){
 
 	$scope.numNotes
 
-	var compressor = new Wad.Poly({
-		compressor : {
-			attack    : 0.5,
-			knee      : 0,
-			ratio     : 15,
-			release   : 0.5,
-			threshold : -50
-		}
-	})
+	// var compressor = new Wad.Poly({
+	// 	compressor : {
+	// 		attack    : 0.5,
+	// 		knee      : 0,
+	// 		ratio     : 15,
+	// 		release   : 0.5,
+	// 		threshold : -50
+	// 	}
+	// })
+
+
 
 	$scope.startOn1 = false
 	$scope.startNotesTest = function(){
