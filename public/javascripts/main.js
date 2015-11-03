@@ -221,16 +221,6 @@ var earTrainingFunction = function($scope, $index){
 
 	$scope.numNotes
 
-	// var compressor = new Wad.Poly({
-	// 	compressor : {
-	// 		attack    : 0.5,
-	// 		knee      : 0,
-	// 		ratio     : 15,
-	// 		release   : 0.5,
-	// 		threshold : -50
-	// 	}
-	// })
-
 	//Play Random Notes For Notes Test
 
 	$scope.startOn1 = false
@@ -361,7 +351,6 @@ var earTrainingFunction = function($scope, $index){
 			play6thNoteQuizNote()
 			play7thNoteQuizNote()
 		}			
-		console.log($scope.notesArray)
 	}
 	
 	$scope.playedNotesArray = []
@@ -383,7 +372,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -410,7 +399,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -437,7 +426,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -464,7 +453,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -491,7 +480,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -518,7 +507,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -545,7 +534,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -572,7 +561,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -599,7 +588,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -626,7 +615,7 @@ var earTrainingFunction = function($scope, $index){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
-				console.log($scope.playedNotesArray)
+
 				//Win or Lose if correct notes played
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
@@ -669,7 +658,7 @@ var earTrainingFunction = function($scope, $index){
 			});
 
 		$scope.playedNotesArray.push($scope.notes[$index])
-		console.log($scope.playedNotesArray)
+
 
 		if($scope.notesArray.length>0){
 			if($scope.numNotes == $scope.playedNotesArray.length){
@@ -712,7 +701,7 @@ var earTrainingFunction = function($scope, $index){
 		$scope.compareArray.filter(function(el){
 			$scope.notes.push(el.key);
 		})
-		console.log($scope.notes)
+
 		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
 		$scope.noteSpeedNum = Number($scope.noteSpeed)
 
