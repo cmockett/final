@@ -161,12 +161,17 @@ var earTrainingFunction = function($scope, $index){
 	$scope.notesNoNumber = []
 
 	//Custom Scale...
+
 	$scope.hideCustomForm = true
 	$scope.changeScale = function(){
-
 		if($scope.selectScale == 12){
 			$scope.hideCustomForm = false
 		}
+		else if($scope.selectScale == 0){
+			console.log(typeof $scope.selectScale)
+			$scope.hideCustomForm = true
+		}
+
 	}
 
 	$scope.submitCustomScale = function(){
@@ -175,13 +180,15 @@ var earTrainingFunction = function($scope, $index){
 		console.log($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
 		customScaleArray.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
 		for(var i = 0; i<customScaleArray.length; i++){
-			if(typeof customScaleArray[i] === Number ){
+			if(customScaleArray[i] !== undefined && customScaleArray[i] !== null){
 				$scope.scalesArray[$scope.selectScale].scalePattern.push(customScaleArray[i])
 			}
 		}
 		// $scope.scalesArray[$scope.selectScale].scalePattern.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
 		console.log($scope.scalesArray[$scope.selectScale].scalePattern)
 	}
+
+	//
 
 	$scope.setKeyScale = function(){
 		$scope.notesNoNumber.length =0
@@ -447,6 +454,7 @@ var earTrainingFunction = function($scope, $index){
 		$scope.keyIndex
 		$scope.compareArray.length = 0
 		$scope.notes.length = 0
+		$scope.notesNoNumber.length = 0
 
 		for(var i=0; i<($scope.keysArray.length/2); i++){
 			if($scope.keysArray[i].key === $scope.selectKeys){

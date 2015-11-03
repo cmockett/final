@@ -10,13 +10,18 @@
 	float: bottom;
 }
 
+/*.custom-input-size{
+	width: 60px;
+	height: 40px;
+}*/
+
 @media (max-width : 768px){
-.lowerMarginTopBottom{
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-.scootDown{
-	margin-top: 6px;
-	margin-bottom: 6px;
-}
+	.lowerMarginTopBottom{
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	.scootDown{
+		margin-top: 6px;
+		margin-bottom: 6px;
+	}
 }
