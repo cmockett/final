@@ -167,28 +167,23 @@ var earTrainingFunction = function($scope, $index){
 		if($scope.selectScale == 12){
 			$scope.hideCustomForm = false
 		}
-		else if($scope.selectScale == 0){
-			console.log(typeof $scope.selectScale)
+		else if($scope.selectScale !== 12){
 			$scope.hideCustomForm = true
 		}
-
 	}
 
 	$scope.submitCustomScale = function(){
 		$scope.scalesArray[$scope.selectScale].scalePattern.length =0
 		var customScaleArray = []
-		console.log($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
 		customScaleArray.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
 		for(var i = 0; i<customScaleArray.length; i++){
 			if(customScaleArray[i] !== undefined && customScaleArray[i] !== null){
 				$scope.scalesArray[$scope.selectScale].scalePattern.push(customScaleArray[i])
 			}
 		}
-		// $scope.scalesArray[$scope.selectScale].scalePattern.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
-		console.log($scope.scalesArray[$scope.selectScale].scalePattern)
 	}
 
-	//
+	// Generate Notes in Key/Scale
 
 	$scope.setKeyScale = function(){
 		$scope.notesNoNumber.length =0
@@ -236,9 +231,10 @@ var earTrainingFunction = function($scope, $index){
 	// 	}
 	// })
 
-
+	//Play Random Notes For Notes Test
 
 	$scope.startOn1 = false
+
 	$scope.startNotesTest = function(){
 		$scope.notesArray.length = 0
 		$scope.playedNotesArray.length = 0
@@ -382,7 +378,54 @@ var earTrainingFunction = function($scope, $index){
 
 	setTimeout(function(){
 
-		Wad.midiInputs[0].onmidimessage= function(event){
+		// Setting Dynamic Midi Inputs to work on up to 10 MIDI channels
+
+		console.log(Wad.midiInputs.length)
+		var dynamicMidiInput 
+
+		for(var i = 0; i<Wad.midiInputs.length; i++){
+			dynamicMidiInput = Wad.midiInputs[i]
+			console.log(dynamicMidiInput)
+		}
+
+
+		// if(Wad.midiInputs.length === 1){
+		// 	dynamicMidiInput = Wad.midiInputs[0]
+		// }
+		// else if(Wad.midiInputs.length === 2){
+		// 	dynamicMidiInput = Wad.midiInputs[0] 
+		// 	dynamicMidiInput = Wad.midiInputs[1]
+		// }
+		// else if(Wad.midiInputs.length === 3){
+		// 	var dynamicMidiInput = Wad.midiInputs[0] 
+		// 	dynamicMidiInput = Wad.midiInputs[1]
+		// 	dynamicMidiInput = Wad.midiInputs[2]
+		// }
+		// else if(Wad.midiInputs.length === 4){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3])
+		// }
+		// else if(Wad.midiInputs.length === 5){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4])
+		// }
+		// else if(Wad.midiInputs.length === 6){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5])
+		// }
+		// else if(Wad.midiInputs.length === 7){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6])
+		// }
+		// else if(Wad.midiInputs.length === 8){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6] || Wad.midiInputs[7])
+		// }
+		// else if(Wad.midiInputs.length === 9){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6] || Wad.midiInputs[7] || Wad.midiInputs[8])
+		// }
+		// else if(Wad.midiInputs.length === 10){
+		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6] || Wad.midiInputs[7] || Wad.midiInputs[8] || Wad.midiInputs[9])
+		// }
+
+
+		dynamicMidiInput.onmidimessage= function(event){
+			console.log(dynamicMidiInput)
 			if(event.data[0] === 144){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
@@ -411,6 +454,7 @@ var earTrainingFunction = function($scope, $index){
 		}
 	}, 1000)
 
+	//Play Notes Via ng-repeated <button> Inputs
 
 	$scope.playNote = function($index){
 		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
@@ -447,10 +491,13 @@ var earTrainingFunction = function($scope, $index){
 			}
 		}
 	}
+
+	//Play Random Scale for Scale Test
+
 	$scope.randomIndex
 
 	$scope.playScale = function(){
-		$scope.randomIndex = Math.floor($scope.scalesArray.length * Math.random())
+		$scope.randomIndex = Math.floor(($scope.scalesArray.length-1) * Math.random())
 		$scope.keyIndex
 		$scope.compareArray.length = 0
 		$scope.notes.length = 0
