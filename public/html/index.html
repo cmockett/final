@@ -13,6 +13,7 @@
 			<div class="row">
 				<h1>Ear Training</h1>
 				<h4>Select a Key and a Scale, and select or play the correct notes to win!</h4>
+				<!-- <h5>If using a MIDI keyboard, </h5> -->
 			</div>
 		</div>
 		<h3 style="color: white">Notes Quiz</h3>
@@ -26,43 +27,33 @@
 
 						<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
 					</select></p>
-					
-					<!-- AAAAARRRRRGGGGHHHHH (working copy above ^^^, but need ng-options) -->
-
-				<!-- 	<p class="navbar-text lowerMarginTopBottom">Scale:<select ng-change="changeScale()" ng-model="selectScale" name="Scale" class="navbar-btn" ng-options="scale.scaleName for scale in scalesArray"> -->
-						
-						<!-- <option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option> -->
-					<!-- </select></p> -->
-
-					<!-- end AAAAARRRRGGGHHHH -->
-
 					<p class="navbar-text scootDown" ng-hide="hideCustomForm">Input Intervals in Semi-Tones</p>
 						<form ng-hide="hideCustomForm" class="form-inline">
 							<div class="row">
 								<div class="form-group">
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="firstCustomScaleDegree" ng-model="firstCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="firstCustomScaleDegree" ng-model="firstCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="secondCustomScaleDegree" ng-model="secondCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="secondCustomScaleDegree" ng-model="secondCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="thirdCustomScaleDegree" ng-model="thirdCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="thirdCustomScaleDegree" ng-model="thirdCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="fourthCustomScaleDegree" ng-model="fourthCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="fourthCustomScaleDegree" ng-model="fourthCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="fifthCustomScaleDegree" ng-model="fifthCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="fifthCustomScaleDegree" ng-model="fifthCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="sixthCustomScaleDegree" ng-model="sixthCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="sixthCustomScaleDegree" ng-model="sixthCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="form-control custom-input-size" type="number" name="seventhCustomScaleDegree" ng-model="seventhCustomScaleDegree">
+										<input class="form-control custom-input-size custom-margin-left" type="number" name="seventhCustomScaleDegree" ng-model="seventhCustomScaleDegree">
 									</div>
 									<div class="col-xs-3 col-sm-3 col-lg-3">
-										<input class="btn-block btn btn-default custom-submit-button" type="submit" value="Submit" ng-click="submitCustomScale()">
+										<input class="btn-block btn btn-default custom-submit-button custom-margin-left" type="submit" value="Submit" ng-click="submitCustomScale()">
 									</div>
 								</div>
 							</div>
