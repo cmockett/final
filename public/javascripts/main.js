@@ -378,54 +378,250 @@ var earTrainingFunction = function($scope, $index){
 
 	setTimeout(function(){
 
-		// Setting Dynamic Midi Inputs to work on up to 10 MIDI channels
-
-		console.log(Wad.midiInputs.length)
-		var dynamicMidiInput 
-
-		for(var i = 0; i<Wad.midiInputs.length; i++){
-			dynamicMidiInput = Wad.midiInputs[i]
-			console.log(dynamicMidiInput)
+		Wad.midiInputs[0].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
 		}
-
-
-		// if(Wad.midiInputs.length === 1){
-		// 	dynamicMidiInput = Wad.midiInputs[0]
-		// }
-		// else if(Wad.midiInputs.length === 2){
-		// 	dynamicMidiInput = Wad.midiInputs[0] 
-		// 	dynamicMidiInput = Wad.midiInputs[1]
-		// }
-		// else if(Wad.midiInputs.length === 3){
-		// 	var dynamicMidiInput = Wad.midiInputs[0] 
-		// 	dynamicMidiInput = Wad.midiInputs[1]
-		// 	dynamicMidiInput = Wad.midiInputs[2]
-		// }
-		// else if(Wad.midiInputs.length === 4){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3])
-		// }
-		// else if(Wad.midiInputs.length === 5){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4])
-		// }
-		// else if(Wad.midiInputs.length === 6){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5])
-		// }
-		// else if(Wad.midiInputs.length === 7){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6])
-		// }
-		// else if(Wad.midiInputs.length === 8){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6] || Wad.midiInputs[7])
-		// }
-		// else if(Wad.midiInputs.length === 9){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6] || Wad.midiInputs[7] || Wad.midiInputs[8])
-		// }
-		// else if(Wad.midiInputs.length === 10){
-		// 	dynamicMidiInput = (Wad.midiInputs[0] || Wad.midiInputs[1] || Wad.midiInputs[2] || Wad.midiInputs[3] || Wad.midiInputs[4] || Wad.midiInputs[5] || Wad.midiInputs[6] || Wad.midiInputs[7] || Wad.midiInputs[8] || Wad.midiInputs[9])
-		// }
-
-
-		dynamicMidiInput.onmidimessage= function(event){
-			console.log(dynamicMidiInput)
+		Wad.midiInputs[1].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[2].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[3].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[4].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[5].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[6].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[7].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[8].onmidimessage= function(event){
+			if(event.data[0] === 144){
+				Wad.midiInstrument.play(
+					{pitch : Wad.pitchesArray[event.data[1]]})
+				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
+				console.log($scope.playedNotesArray)
+				//Win or Lose if correct notes played
+				if($scope.notesArray.length>0){
+					if($scope.numNotes == $scope.playedNotesArray.length){
+						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
+							var message = "Correct!"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+						}
+						else{
+							var message = "Try Again"
+							$('#modalMessage').html(message)
+							$('#myModal').modal('show')
+							$scope.playedNotesArray.length = 0
+						}
+					}
+				}
+			}
+			else if(event.data[0] === 128){
+				Wad.midiInstrument.stop()
+			}
+		}
+		Wad.midiInputs[9].onmidimessage= function(event){
 			if(event.data[0] === 144){
 				Wad.midiInstrument.play(
 					{pitch : Wad.pitchesArray[event.data[1]]})
