@@ -98,7 +98,7 @@
 					<p class="navbar-text lowerMarginTopBottom">Key:<select ng-model="selectKeys" name="Key" class="navbar-btn">
 						<option value="{{key.key}}" ng-repeat="key in keysArray | limitTo: 12">{{key.label}}</option>
 					</select></p>
-					<p class="navbar-text lowerMarginTopBottom">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn">
+					<p class="navbar-text lowerMarginTopBottom">Timbre:<select ng-model="selectTimbre" name="Timbre" class="navbar-btn" ng-change="changeTimbre()">
 						<option value="{{wave}}" ng-repeat="wave in timbreArray">{{wave}}</option>
 					</select></p>	
 					<p class="navbar-text lowerMarginTopBottom">Quiz Note Speed<select ng-model="noteSpeed" name="noteSpeed" class="navbar-btn">
