@@ -741,7 +741,7 @@ var earTrainingFunction = function($scope, $index){
 		var position = $scope.keyIndex
 
 		//Populate $scope.notes array with correct notes from selected Key and Scale
-		
+
 		for ( var i = 0; i < $scope.scalesArray[$scope.randomIndex].scalePattern.length; i++ ) {
 			$scope.compareArray.push($scope.keysArray[position])
 			position += $scope.scalesArray[$scope.randomIndex].scalePattern[i]
@@ -750,7 +750,6 @@ var earTrainingFunction = function($scope, $index){
 			$scope.notes.push(el.key);
 		})
 
-		console.log($scope.notes)
 		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
 		$scope.noteSpeedNum = Number($scope.noteSpeed)
 
