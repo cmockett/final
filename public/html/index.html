@@ -12,7 +12,7 @@
 		<div class="jumbotron container-fluid">
 			<div class="row">
 				<h1>Ear Training</h1>
-				<h4>Select a Key and a Scale, and select or play the correct notes to win!</h4>
+				<h4>Select a Key and a Scale, and select or play (via MIDI) the correct notes!</h4>
 				<!-- <h5>If using a MIDI keyboard, </h5> -->
 			</div>
 		</div>
@@ -87,7 +87,7 @@
 		</nav>
 		<div class="row">
 			<div class="col-xs-4 col-sm-2"  ng-repeat="note in notesNoNumber track by $index">
-				<button class="btn btn-block btn-default" data-toggle="button" aria-pressed="false" autocomplete="false" ng-click="playNote($index, scaleDegrees.id)">{{note}}
+				<button class="btn btn-block btn-default" aria-pressed="false" autocomplete="false" ng-click="playNote($index, scaleDegrees.id)">{{note}}
 				</button>
 			</div>
 		</div>

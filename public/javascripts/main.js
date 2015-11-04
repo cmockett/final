@@ -105,51 +105,51 @@ var earTrainingFunction = function($scope, $index){
 	$scope.scalesArray = [
 		{
 			scaleName: "Chromatic",
-			scalePattern: [1,1,1,1,1,1,1,1,1,1,1,1],
+			scalePattern: [1,1,1,1,1,1,1,1,1,1,1,1,0],
 		},
 		{
 			scaleName: "Ionian (Major)",
-			scalePattern: [2,2,1,2,2,2,1],
+			scalePattern: [2,2,1,2,2,2,1,0],
 		},
 		{
 			scaleName: "Dorian",
-			scalePattern: [2,1,2,2,2,1,2],
+			scalePattern: [2,1,2,2,2,1,2,0],
 		},
 		{
 			scaleName: "Phrygian",
-			scalePattern: [1,2,2,2,1,2,2],
+			scalePattern: [1,2,2,2,1,2,2,0],
 		},
 		{
 			scaleName: "Lydian",
-			scalePattern: [2,2,2,1,2,2,1],
+			scalePattern: [2,2,2,1,2,2,1,0],
 		},
 		{
 			scaleName: "Mixolydian",
-			scalePattern: [2,2,1,2,2,1,2],
+			scalePattern: [2,2,1,2,2,1,2,0],
 		},
 		{
 			scaleName: "Aeolian (Minor)",
-			scalePattern: [2,1,2,2,1,2,2],
+			scalePattern: [2,1,2,2,1,2,2,0],
 		},
 		{
 			scaleName: "Locrian",
-			scalePattern: [1,2,2,1,2,2,2],
+			scalePattern: [1,2,2,1,2,2,2,0],
 		},
 		{
 			scaleName: "Half-Whole Diminished",
-			scalePattern: [1,2,1,2,1,2,1,2],
+			scalePattern: [1,2,1,2,1,2,1,2,0],
 		},
 		{
 			scaleName: "Whole-Half Diminished",
-			scalePattern: [2,1,2,1,2,1,2,1],
+			scalePattern: [2,1,2,1,2,1,2,1,0],
 		},
 		{
 			scaleName: "Harmonic Minor",
-			scalePattern: [2,1,2,2,1,3,1],
+			scalePattern: [2,1,2,2,1,3,1,0],
 		},
 		{
 			scaleName: "Melodic Minor",
-			scalePattern: [2,1,2,2,2,2,1],
+			scalePattern: [2,1,2,2,2,2,1,0],
 		},
 		{
 			scaleName: "Custom Scale...",
@@ -163,6 +163,7 @@ var earTrainingFunction = function($scope, $index){
 	//Custom Scale...
 
 	$scope.hideCustomForm = true
+
 	$scope.changeScale = function(){
 		if($scope.selectScale == 12){
 			$scope.hideCustomForm = false
@@ -173,9 +174,9 @@ var earTrainingFunction = function($scope, $index){
 	}
 
 	$scope.submitCustomScale = function(){
-		$scope.scalesArray[$scope.selectScale].scalePattern.length =0
+		$scope.scalesArray[$scope.selectScale].scalePattern.length = 0
 		var customScaleArray = []
-		customScaleArray.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree)
+		customScaleArray.push($scope.firstCustomScaleDegree, $scope.secondCustomScaleDegree, $scope.thirdCustomScaleDegree, $scope.fourthCustomScaleDegree, $scope.fifthCustomScaleDegree, $scope.sixthCustomScaleDegree, $scope.seventhCustomScaleDegree, 0)
 		for(var i = 0; i<customScaleArray.length; i++){
 			if(customScaleArray[i] !== undefined && customScaleArray[i] !== null){
 				$scope.scalesArray[$scope.selectScale].scalePattern.push(customScaleArray[i])
@@ -192,12 +193,17 @@ var earTrainingFunction = function($scope, $index){
 		$scope.compareArray.length = 0
 		$scope.notes.length = 0
 
+		//Set selected Key as Index to start looping from
+
 		for(var i=0; i<($scope.keysArray.length/2); i++){
 			if($scope.keysArray[i].key === $scope.selectKeys){
 				$scope.keyIndex = i
 			}
 		}
 		var position = $scope.keyIndex
+
+		//Populate $scope.notes array with correct notes from selected Key and Scale
+
 		for ( var i = 0; i < $scope.scalesArray[$scope.selectScale].scalePattern.length; i++ ) {
 			$scope.compareArray.push($scope.keysArray[position])
 			position += $scope.scalesArray[$scope.selectScale].scalePattern[i]
@@ -206,7 +212,9 @@ var earTrainingFunction = function($scope, $index){
 			$scope.notes.push(el.key);
 		})
 
+
 		//Removing # from each Note Value, just for display on the ng-repeated buttons
+
 		for(var i = 0; i<$scope.notes.length; i++){
 			var tempArray=[]
 			var tempVar = ''
@@ -355,7 +363,20 @@ var earTrainingFunction = function($scope, $index){
 	
 	$scope.playedNotesArray = []
 
+	//Default Timbre if not selected yet
+
+	if($scope.selectTimbre === undefined){
+		$scope.selectTimbre = 'Sine'
+		$scope.selectTimbreLC = 'sine'
+		Wad.midiInstrument = new Wad({
+			source : $scope.selectTimbreLC,
+			volume : 0.4,
+		})
+	}
+
 ////////Setting up MIDI input and pushing into $scope.playedNotesArray
+	
+
 
 	$scope.changeTimbre = function(){
 		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
@@ -369,11 +390,14 @@ var earTrainingFunction = function($scope, $index){
 
 		Wad.midiInputs[0].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
+
 				if($scope.notesArray.length>0){
 					if($scope.numNotes == $scope.playedNotesArray.length){
 						if($scope.notesArray.join() === $scope.playedNotesArray.join()){
@@ -396,8 +420,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[1].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -423,8 +449,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[2].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -450,8 +478,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[3].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -477,8 +507,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[4].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -504,8 +536,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[5].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -531,8 +565,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[6].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -558,8 +594,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[7].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -585,8 +623,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[8].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -612,8 +652,10 @@ var earTrainingFunction = function($scope, $index){
 		}
 		Wad.midiInputs[9].onmidimessage= function(event){
 			if(event.data[0] === 144){
+				Wad.midiInstrument.stop("all")
 				Wad.midiInstrument.play(
-					{pitch : Wad.pitchesArray[event.data[1]]})
+					{pitch : Wad.pitchesArray[event.data[1]],
+					 label : "all"})
 				$scope.playedNotesArray.push(Wad.pitchesArray[event.data[1]])
 
 				//Win or Lose if correct notes played
@@ -682,11 +724,14 @@ var earTrainingFunction = function($scope, $index){
 	$scope.randomIndex
 
 	$scope.playScale = function(){
+		// "-1" on following line to prevent Custom Scale from being randomly generated -- maybe do an if/else to include it if .length>0...
 		$scope.randomIndex = Math.floor(($scope.scalesArray.length-1) * Math.random())
 		$scope.keyIndex
 		$scope.compareArray.length = 0
 		$scope.notes.length = 0
 		$scope.notesNoNumber.length = 0
+
+		//Set selected Key as Index to start looping from
 
 		for(var i=0; i<($scope.keysArray.length/2); i++){
 			if($scope.keysArray[i].key === $scope.selectKeys){
@@ -694,6 +739,9 @@ var earTrainingFunction = function($scope, $index){
 			}
 		}
 		var position = $scope.keyIndex
+
+		//Populate $scope.notes array with correct notes from selected Key and Scale
+		
 		for ( var i = 0; i < $scope.scalesArray[$scope.randomIndex].scalePattern.length; i++ ) {
 			$scope.compareArray.push($scope.keysArray[position])
 			position += $scope.scalesArray[$scope.randomIndex].scalePattern[i]
@@ -702,6 +750,7 @@ var earTrainingFunction = function($scope, $index){
 			$scope.notes.push(el.key);
 		})
 
+		console.log($scope.notes)
 		$scope.selectTimbreLC = $scope.selectTimbre.toLowerCase()
 		$scope.noteSpeedNum = Number($scope.noteSpeed)
 
@@ -827,17 +876,18 @@ var earTrainingFunction = function($scope, $index){
 				panning : 0,
 				env     : {hold : $scope.noteSpeedNum},
 			})}
+		var play13thScaleQuizNote = function(){
+			timbre.play({
+				volume  : 0.4, 
+				wait    : ($scope.noteSpeedNum*12),
+				loop    : false, 
+				pitch   : $scope.notes[12],
+				detune  : 0,
+				panning : 0,
+				env     : {hold : $scope.noteSpeedNum},
+			})}
 
-		if($scope.notes.length === 7){
-			play1stScaleQuizNote()
-			play2ndScaleQuizNote()
-			play3rdScaleQuizNote()
-			play4thScaleQuizNote()
-			play5thScaleQuizNote()
-			play6thScaleQuizNote()
-			play7thScaleQuizNote()						
-		}
-		else if($scope.notes.length === 8){
+		if($scope.notes.length <= 8){
 			play1stScaleQuizNote()
 			play2ndScaleQuizNote()
 			play3rdScaleQuizNote()
@@ -845,9 +895,20 @@ var earTrainingFunction = function($scope, $index){
 			play5thScaleQuizNote()
 			play6thScaleQuizNote()
 			play7thScaleQuizNote()
-			play8thScaleQuizNote()				
+			play8thScaleQuizNote()						
 		}
-		else if($scope.notes.length === 12){
+		else if($scope.notes.length === 9){
+			play1stScaleQuizNote()
+			play2ndScaleQuizNote()
+			play3rdScaleQuizNote()
+			play4thScaleQuizNote()
+			play5thScaleQuizNote()
+			play6thScaleQuizNote()
+			play7thScaleQuizNote()
+			play8thScaleQuizNote()	
+			play9thScaleQuizNote()			
+		}
+		else if($scope.notes.length === 13){
 			play1stScaleQuizNote()
 			play2ndScaleQuizNote()
 			play3rdScaleQuizNote()
@@ -860,6 +921,7 @@ var earTrainingFunction = function($scope, $index){
 			play10thScaleQuizNote()
 			play11thScaleQuizNote()
 			play12thScaleQuizNote()
+			play13thScaleQuizNote()
 		}
 	}
 	$scope.changeScaleDropdown = function(){
