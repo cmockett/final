@@ -111,7 +111,7 @@
 	    		</div>
 	    		<div class="row">
 	    			<p class="navbar-text lowerMarginTopBottom pull-right custom-margin-right">Scale:<select name="Scale" class="navbar-btn" ng-model="answerScaleQuiz" ng-change="changeScaleDropdown()">
-	    			<option value="{{$index}}" ng-repeat="scale in scalesArray">{{scale.scaleName}}</option>
+	    			<option value="{{$index}}" ng-repeat="scale in scalesArray | limitTo: 12">{{scale.scaleName}}</option>
 	    			</select></p>
 				</div>
 			</div>
